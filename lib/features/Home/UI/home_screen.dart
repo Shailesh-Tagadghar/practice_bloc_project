@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
             actions: [
               IconButton(
                   onPressed: () {
-                    homeBloc.add(HomeWishlistButtonEvent());
+                    homeBloc.add(HomeWishlistNavigateEvent());
                   },
                   icon: const Icon(
                     Icons.favorite_border_outlined,
@@ -40,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   )),
               IconButton(
                   onPressed: () {
-                    homeBloc.add(HomeCartButtonEvent());
+                    homeBloc.add(HomeCartNavigateEvent());
                   },
                   icon: const Icon(
                     Icons.shopping_cart_outlined,
