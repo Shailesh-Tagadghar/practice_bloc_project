@@ -12,8 +12,16 @@ class _WishlistScreenState extends State<WishlistScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Wishlist Screen'),
+        backgroundColor: Colors.blueAccent,
+        title: const Text(
+          'Wishlist Screen',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
         centerTitle: true,
+        toolbarHeight: 60,
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
     );
   }
