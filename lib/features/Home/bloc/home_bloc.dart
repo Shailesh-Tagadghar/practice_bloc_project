@@ -9,6 +9,8 @@ part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(HomeInitial()) {
+    on<HomeInitialEvent>(homeInitialEvent);
+
     on<HomeWishlistButtonEvent>(homeWishlistButtonEvent);
 
     on<HomeCartButtonEvent>(homeCartButtonEvent);
@@ -17,6 +19,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
     on<HomeWishlistNavigateEvent>(homeWishlistNavigateEvent);
   }
+
+  FutureOr<void> homeInitialEvent(
+      HomeInitialEvent event, Emitter<HomeState> emit) {}
 
   FutureOr<void> homeWishlistButtonEvent(
       HomeWishlistButtonEvent event, Emitter<HomeState> emit) {
