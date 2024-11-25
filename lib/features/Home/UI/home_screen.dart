@@ -27,7 +27,6 @@ class _HomeScreenState extends State<HomeScreen> {
       buildWhen: (previous, current) => current is! HomeActionState,
       listener: (context, state) {
         if (state is HomeCartNavigateActionState) {
-          print('working but not navigate');
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const CartScreen()));
         } else if (state is HomeWishlistNavigateActionState) {
@@ -36,36 +35,53 @@ class _HomeScreenState extends State<HomeScreen> {
         }
       },
       builder: (context, state) {
-        return Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.blueAccent,
-            title: const Text(
-              'Grocery App',
-              style: TextStyle(
-                color: Colors.white,
+        switch (state.runtimeType) {
+          case const (HomeLoadingState):
+            return const Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
               ),
-            ),
-            toolbarHeight: 60,
-            actions: [
-              IconButton(
-                  onPressed: () {
-                    homeBloc.add(HomeWishlistNavigateEvent());
-                  },
-                  icon: const Icon(
-                    Icons.favorite_border_outlined,
+            );
+          case const (HomeLoadingSuccessState):
+            return Scaffold(
+              appBar: AppBar(
+                backgroundColor: Colors.blueAccent,
+                title: const Text(
+                  'Grocery App',
+                  style: TextStyle(
                     color: Colors.white,
-                  )),
-              IconButton(
-                  onPressed: () {
-                    homeBloc.add(HomeCartNavigateEvent());
-                  },
-                  icon: const Icon(
-                    Icons.shopping_cart_outlined,
-                    color: Colors.white,
-                  ))
-            ],
-          ),
-        );
+                  ),
+                ),
+                toolbarHeight: 60,
+                actions: [
+                  IconButton(
+                      onPressed: () {
+                        homeBloc.add(HomeWishlistNavigateEvent());
+                      },
+                      icon: const Icon(
+                        Icons.favorite_border_outlined,
+                        color: Colors.white,
+                      )),
+                  IconButton(
+                      onPressed: () {
+                        homeBloc.add(HomeCartNavigateEvent());
+                      },
+                      icon: const Icon(
+                        Icons.shopping_cart_outlined,
+                        color: Colors.white,
+                      ))
+                ],
+              ),
+            );
+          case HomeErrorState:
+            return const Scaffold(
+              body: Center(
+                child: Text('Something went wrong'),
+              ),
+            );
+          default:
+            return const SizedBox();
+        }
       },
     );
   }
