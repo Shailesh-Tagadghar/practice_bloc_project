@@ -17,10 +17,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return BlocConsumer<HomeBloc, HomeState>(
       bloc: homeBloc,
-      buildWhen: (previous, current) => current is HomeActionState,
-      listenWhen: (previous, current) => current is! HomeActionState,
+      listenWhen: (previous, current) => current is HomeActionState,
+      buildWhen: (previous, current) => current is! HomeActionState,
       listener: (context, state) {
         if (state is HomeCartNavigateActionState) {
+          print('working but not navigate');
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const CartScreen()));
         } else if (state is HomeWishlistNavigateActionState) {
