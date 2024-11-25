@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:practice_bloc_project/features/Cart/UI/cart_screen.dart';
-import 'package:practice_bloc_project/features/Home/UI/models/product_data_model.dart';
 import 'package:practice_bloc_project/features/Home/bloc/home_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:practice_bloc_project/features/Wishlist/UI/wishlist_screen.dart';
@@ -45,7 +44,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             );
           case const (HomeLoadingSuccessState):
-            final ProductDataModel productDataModel;
             final successState = state as HomeLoadingSuccessState;
             return Scaffold(
               appBar: AppBar(
