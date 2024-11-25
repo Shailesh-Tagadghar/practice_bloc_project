@@ -33,6 +33,12 @@ class _HomeScreenState extends State<HomeScreen> {
         } else if (state is HomeWishlistNavigateActionState) {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const WishlistScreen()));
+        } else if (state is HomeCartAddedAction) {
+          ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Item Added to Cart')));
+        } else if (state is HomeWishlistAddedAction) {
+          ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Item Added to Wishlist')));
         }
       },
       builder: (context, state) {
@@ -129,14 +135,22 @@ class _HomeScreenState extends State<HomeScreen> {
                               Row(
                                 children: [
                                   IconButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      homeBloc.add(HomeWishlistButtonEvent(
+                                        clickedProducts: productDataModel,
+                                      ));
+                                    },
                                     icon: const Icon(
                                       Icons.favorite_border_outlined,
                                       color: Colors.black,
                                     ),
                                   ),
                                   IconButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      homeBloc.add(HomeCartButtonEvent(
+                                        clickedProducts: productDataModel,
+                                      ));
+                                    },
                                     icon: const Icon(
                                       Icons.shopping_cart_outlined,
                                       color: Colors.black,

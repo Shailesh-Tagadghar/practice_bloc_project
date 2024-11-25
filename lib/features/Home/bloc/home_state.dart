@@ -21,4 +21,9 @@ class HomeCartNavigateActionState extends HomeActionState {}
 
 class HomeWishlistNavigateActionState extends HomeActionState {}
 
+class HomeWishlistAddedAction extends HomeActionState {}
+
+class HomeCartAddedAction extends HomeActionState {}
+
+
 // home state -- here will define states of our page like loading, success, error and Action state.
