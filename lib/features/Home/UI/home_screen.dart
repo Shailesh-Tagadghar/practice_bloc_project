@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:practice_bloc_project/features/Cart/UI/cart_screen.dart';
 import 'package:practice_bloc_project/features/Home/bloc/home_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:practice_bloc_project/features/Wishlist/UI/wishlist_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,9 +17,17 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return BlocConsumer<HomeBloc, HomeState>(
       bloc: homeBloc,
-      // buildWhen: (previous, current) {},
-      // listenWhen: (previous, current) {},
-      listener: (context, state) {},
+      buildWhen: (previous, current) => current is HomeActionState,
+      listenWhen: (previous, current) => current is! HomeActionState,
+      listener: (context, state) {
+        if (state is HomeCartNavigateActionState) {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const CartScreen()));
+        } else if (state is HomeWishlistNavigateActionState) {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const WishlistScreen()));
+        }
+      },
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
