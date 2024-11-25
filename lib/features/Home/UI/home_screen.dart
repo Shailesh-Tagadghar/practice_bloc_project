@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
           appBar: AppBar(
             backgroundColor: Colors.blueAccent,
             title: const Text(
-              'Grocery List',
+              'Grocery App',
               style: TextStyle(
                 color: Colors.white,
               ),

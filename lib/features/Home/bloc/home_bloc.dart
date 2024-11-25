@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:practice_bloc_project/features/Home/UI/models/product_data_model.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';
